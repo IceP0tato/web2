@@ -27,12 +27,9 @@ public class TaskDao {
 
     public void task1() {
         try {
-            for (int i=1; i<=5; i++) {
-                String sql = "update products set stock_quantity = stock_quantity - 5 where product_id = ?";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setInt(1, i);
-                ps.executeUpdate();
-            }
+            String sql = "update products set stock_quantity = stock_quantity - 5";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
