@@ -1,4 +1,4 @@
-package example.실습.ex1;
+package 실습.ex1;
 
 import org.springframework.stereotype.Repository;
 
