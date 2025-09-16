@@ -17,8 +17,14 @@ const root = document.querySelector('#root');
 // 3. 가져온 root 마크업에 렌더링할 객체 생성
 const create = createRoot(root);
 // 렌더링할 컴포넌트 가져오기
-import App from './App.jsx'
+// import App from './App.jsx'
 // 4. 렌더링하기
-create.render(<App />);
+// create.render(<App />);
+
+import Component1 from './example/d01/Component1';
+import Component2 from './example/d01/Component2';
+create.render(<Component1 />);
+create.render(<Component2 />); // render는 1번만 가능 (Component1은 화면에 출력되지 않음)
+
 
 // 요약 : createRoot(document.querySelector('#root')).render(<[최초 출력할 함수명] />);
