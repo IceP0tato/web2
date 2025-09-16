@@ -1,0 +1,22 @@
+/* 컴포넌트에서 css 를 호출하려면 import 'css파일경로' 필요 */
+
+li {
+    list-style-type: none;
+}
+
+.products {
+    display: flex;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 22px;
+}
+
+.isStock {
+    font-size: 22px;
+}
