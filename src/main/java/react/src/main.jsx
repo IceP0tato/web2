@@ -21,10 +21,17 @@ const create = createRoot(root);
 // 4. 렌더링하기
 // create.render(<App />);
 
+/*
 import Component1 from './example/d01/Component1';
-import Component2 from './example/d01/Component2';
 create.render(<Component1 />);
+import Component2 from './example/d01/Component2';
 create.render(<Component2 />); // render는 1번만 가능 (Component1은 화면에 출력되지 않음)
-
+import Component3 from './example/d01/Component3';
+create.render(<Component3 />);
+import Task1 from './example/d01/Task1';
+create.render(<Task1 />);
+*/
+import Task2 from './example/d01/Task2';
+create.render(<Task2 />);
 
 // 요약 : createRoot(document.querySelector('#root')).render(<[최초 출력할 함수명] />);
