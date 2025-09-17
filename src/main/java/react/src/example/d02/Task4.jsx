@@ -1,17 +1,20 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 
-export default function Task4(props) {
+export default function Task4() {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [age, setAge] = useState('');
     const [list, setList] = useState([]);
-
-    const addItem = (props) => {
-        setList([...list, {name, phone, age}]);
+    const id = useRef(0);
+    
+    const addItem = () => {
+        id.current += 1;
+        setList([...list, {id: id.current, name, phone, age}]);
     }
 
-    const deleteItem = (props) => {
-
+    const deleteItem = (id) => {
+        const newList = list.filter((item) => item.id != id);
+        setList(newList);
     }
     
     return (<>
@@ -22,9 +25,14 @@ export default function Task4(props) {
         <button onClick={addItem}>등록</button>
 
         <ul>
-            {list.map((item) => {
-                <li>성명: {item.name} 연락처: {item.phone} 나이: {item.age}<button onClick={deleteItem}>삭제</button></li>
-            })}
+            {list.map((item) => (
+                <li key={item.id}>
+                    성명: {item.name}&nbsp;&nbsp;
+                    연락처: {item.phone}&nbsp;&nbsp;
+                    나이: {item.age}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button onClick={() => deleteItem(item.id)}>삭제</button>
+                </li>
+            ))}
         </ul>
         <h5>총 {list.length}명</h5>
     </>)
