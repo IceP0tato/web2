@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/board")
 @RequiredArgsConstructor
+@CrossOrigin(value="http://localhost:5173") // CORS (서로 다른 서버 간의 요청) 정책 설정
 public class BoardController {
     private final BoardService boardService;
 

@@ -10,6 +10,10 @@ export default function Task4() {
     const addItem = () => {
         id.current += 1;
         setList([...list, {id: id.current, name, phone, age}]);
+
+        // const obj = {name, phone, age}; 
+        // list.push(obj);
+        // setList([...list]); 주소값 변경
     }
 
     const deleteItem = (id) => {

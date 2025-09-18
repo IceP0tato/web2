@@ -28,24 +28,9 @@ import Component2 from './example/d01/Component2';
 create.render(<Component2 />); // render는 1번만 가능 (Component1 은 화면에 출력되지 않음)
 import Component3 from './example/d01/Component3';
 create.render(<Component3 />);
-import Task1 from './example/d01/Task1';
-create.render(<Task1 />);
-import Task2 from './example/d01/Task2';
-create.render(<Task2 />);
-import Component4 from './example/d02/Component4';
-create.render(<Component4 />);
-import Component5 from './example/d02/Component5';
-create.render(<Component5 />);
-import Component6 from './example/d02/Component6';
-create.render(<Component6 />);
-import Component7 from './example/d02/Component7';
-create.render(<Component7 />);
-import Task3 from './example/d02/Task3';
-create.render(<Task3 />);
 */
-import Task4 from './example/d02/Task4';
-create.render(<Task4 />);
-
+import Task5 from './example/d03/Task5';
+create.render(<Task5 />);
 
 
 // 요약 : createRoot(document.querySelector('#root')).render(<[최초 출력할 함수명] />);
