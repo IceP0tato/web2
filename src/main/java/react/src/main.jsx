@@ -29,8 +29,8 @@ create.render(<Component2 />); // render는 1번만 가능 (Component1 은 화�
 import Component3 from './example/d01/Component3';
 create.render(<Component3 />);
 */
-import Main from './example/exam1/main';
-create.render(<Main />);
+import Task6 from './example/d04/Task6';
+create.render(<Task6 />);
 
 
 // 요약 : createRoot(document.querySelector('#root')).render(<[최초 출력할 함수명] />);
