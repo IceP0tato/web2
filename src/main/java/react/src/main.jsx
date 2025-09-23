@@ -29,8 +29,22 @@ create.render(<Component2 />); // render는 1번만 가능 (Component1 은 화�
 import Component3 from './example/d01/Component3';
 create.render(<Component3 />);
 */
-import Task6 from './example/d04/Task6';
-create.render(<Task6 />);
+
+/*
+import Component13 from './example/d05/Component13';
+// 내가 만든 store 불러오기
+// dispatch 보다 먼저 실행되어야 함
+import store from './example/d05/store.jsx'
+// store 공급
+import {Provider} from 'react-redux'
+create.render(<Provider store={store}><Component13 /></Provider>);
+*/
+import App from './example/d05/Task/App';
+import {Provider} from 'react-redux'
+import store from './example/d05/Task/store/store';
+// store를 root 컴포넌트에 공급하여 모든 컴포넌트가 사용할 수 있도록 전역변수 지정
+create.render(<Provider store={store}><App /></Provider>);
+
 
 
 // 요약 : createRoot(document.querySelector('#root')).render(<[최초 출력할 함수명] />);
