@@ -39,11 +39,33 @@ import store from './example/d05/store.jsx'
 import {Provider} from 'react-redux'
 create.render(<Provider store={store}><Component13 /></Provider>);
 */
-import App from './example/d05/Task/App';
+
+/*
+import App from './example/d05/Task7/App';
 import {Provider} from 'react-redux'
-import store from './example/d05/Task/store/store';
+import store, { persistor } from './example/d05/Task/store/store';
+import { PersistGate } from 'redux-persist/integration/react';
 // store를 root 컴포넌트에 공급하여 모든 컴포넌트가 사용할 수 있도록 전역변수 지정
-create.render(<Provider store={store}><App /></Provider>);
+// persist 공급, loading = {초기 로딩값} persist = {persistStore}
+create.render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>);
+*/
+
+import App from './example/d06/Task8/App';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from './example/d06/Task8/store/store';
+create.render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>
+);
 
 
 
