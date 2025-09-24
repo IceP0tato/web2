@@ -12,17 +12,17 @@ export default function MenuPage(props) {
 
     const add = (item) => {
         dispatch(addToCart(item));
+        console.log(item);
         alert('물품이 장바구니에 담겼습니다.');
     }
 
-    
     return (<>
         <h3>메뉴 페이지</h3>
         <table>
             <thead>
                 <tr>
                     <th>번호</th>
-                    <th>이름</th>
+                    <th>제품명</th>
                     <th>가격</th>
                     <th>비고</th>
                 </tr>

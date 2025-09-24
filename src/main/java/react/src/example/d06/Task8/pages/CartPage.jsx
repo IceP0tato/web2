@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 
 export default function CartPage(props) {
-    const cart = useSelector((state) => state.cart);
+    const cart = useSelector((state) => state.cart.cartItem);
     
     return (<>
         <h3>장바구니 페이지</h3>
@@ -9,17 +9,17 @@ export default function CartPage(props) {
             <thead>
                 <tr>
                     <th>제품명</th>
-                    <th>담은 수량</th>
-                    <th>금액</th>
+                    <th>수량</th>
+                    <th>가격</th>
                 </tr>
             </thead>
             <tbody>
                 {
                     cart.map((item) => (
-                        <tr kay={item.id}>
+                        <tr key={item.id}>
                             <td>{item.name}</td>
-                            <td>{}</td>
-                            <td>{item.price}</td>
+                            <td>{item.amount}</td>
+                            <td>{item.price * item.amount}</td>
                         </tr>
                     ))
                 }

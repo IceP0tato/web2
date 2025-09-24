@@ -6,8 +6,8 @@ export default function App(props) {
             <h3>헤더</h3>
             <ul>
                 <li><Link to="/">HOME</Link></li>
-                <li><Link to="/menu">메뉴 페이지</Link></li>
-                <li><Link to="/cart">장바구니 페이지</Link></li>
+                <li><Link to="/menu">메뉴</Link></li>
+                <li><Link to="/cart">장바구니</Link></li>
             </ul>
         </div>
     </>)
