@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux"
 
 export default function CartPage(props) {
-    const cart = useSelector((state) => state.cart.cartItem);
+    // 상태에서 'cart' 라는 상태의 객체 (cartItem) 를 가져옴
+    const cart = useSelector((state) => state.cart.cartList);
     
     return (<>
         <h3>장바구니 페이지</h3>
