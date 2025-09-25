@@ -15,6 +15,7 @@ public interface BookMapper {
     @Update("update books set stock = stock + 1 where id = #{book_id}")
     boolean returnBook(int book_id);
 
+    // 대출했던 순서대로 반납 처리하도록 설정
     @Update("update rentals set return_date = now() where book_id = #{book_id} and member = #{member} and return_date is null limit 1")
     boolean updateRental(int book_id, String member);
 }
