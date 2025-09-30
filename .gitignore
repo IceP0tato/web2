@@ -40,3 +40,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/logs/app.log
+/logs/app.log.2025-09-29.0.gz
+/logs/

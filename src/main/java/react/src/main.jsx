@@ -55,17 +55,9 @@ create.render(
   </Provider>);
 */
 
-import App from './example/d07/Task9/App';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import store, { persistor } from './example/d07/Task9/store/store';
-create.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>
-);
+import Component15 from './example/d08/Component15';
+create.render(<Component15 />);
+
 
 
 // 요약 : createRoot(document.querySelector('#root')).render(<[최초 출력할 함수명] />);
