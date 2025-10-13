@@ -35,10 +35,10 @@ public interface XmlMapper {
     StudentDto query1(int kor);
 
     // 동적 쿼리 (XML)
-    StudentDto query2(int kor);
+    List<StudentDto> query2(int kor);
 
     // 동적 쿼리 2
-    StudentDto query3(String name, int math);
+    List<StudentDto> query3(String name, int math);
 
     // 동적 쿼리 3
     int saveAll(List<StudentDto> dtos);

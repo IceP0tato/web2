@@ -44,4 +44,22 @@ public class XmlController {
         int result = xmlMapper.update(dto);
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/query2")
+    public ResponseEntity<?> query2(@RequestParam int kor) {
+        List<StudentDto> result = xmlMapper.query2(kor);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/query3")
+    public ResponseEntity<?> query3(@RequestParam String name, @RequestParam int math) {
+        List<StudentDto> result = xmlMapper.query3(name, math);
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<?> saveAll(@RequestBody List<StudentDto> dtos) {
+        int result = xmlMapper.saveAll(dtos);
+        return ResponseEntity.ok(result);
+    }
 }
