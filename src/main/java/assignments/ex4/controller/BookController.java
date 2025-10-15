@@ -7,6 +7,7 @@ import assignments.ex4.model.dto.BookDto;
 import assignments.ex4.model.dto.RentalDto;
 import assignments.ex4.service.BookService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,6 +37,12 @@ public class BookController {
     @PostMapping("/addAll")
     public ResponseEntity<?> addBooks(@RequestBody List<BookDto> bookDtos) {
         int result = bookService.addBooks(bookDtos);
-        return ResponseEntity.ok(result);
+        List<Integer> list = new ArrayList<>();
+        if (result != 0) {
+            for (BookDto obj : bookDtos) {
+                list.add(obj.getId());
+            }
+        }
+        return ResponseEntity.ok(list);
     }
 }

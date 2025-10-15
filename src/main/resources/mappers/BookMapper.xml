@@ -20,7 +20,7 @@
         </where>
     </select>
 
-    <insert id="addBooks" parameterType="list">
+    <insert id="addBooks" parameterType="list" useGeneratedKeys="true" keyProperty="id">
         insert into books(title, stock) values
         <foreach collection="list" item="book" separator=",">
             (#{book.title}, #{book.stock})
