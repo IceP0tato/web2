@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="assignments.ex6.model.mapper.BookMapper">
+    <update id="createView">
+        create or replace view rental_view as
+            select books.id as bookid, title, stock, rentals.id as rentid, book_id, member, rent_date, return_date
+            from rentals
+            join books on books.id = rentals.book_id;
+    </update>
+
+    <update id="createStockView">
+        create or replace view rental_stock_view as
+            select * from books where stock > (select avg(stock) from books)
+    </update>
+
+    <select id="getView" resultType="assignments.ex6.model.dto.RentalDto">
+        select * from rental_view;
+    </select>
+
+    <select id="getStockView" resultType="assignments.ex6.model.dto.RentalDto">
+        select * from rental_stock_view;
+    </select>
+</mapper>

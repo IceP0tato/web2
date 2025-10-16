@@ -44,3 +44,13 @@ ALTER TABLE BOOKS MODIFY COLUMN title LONGTEXT;
 
 select * from books where stock > (select avg(stock) from books);
 select * from books where id = (select book_id from rentals group by book_id order by count(*) desc limit 1);
+
+create or replace view rental_view as
+            select books.id as bookid, title, stock, rentals.id as rentid, book_id, member, rent_date, return_date from rentals join books on books.id = rentals.book_id;
+            
+select * from rental_view;
+
+create or replace view rental_stock_view as
+            select * from books where stock > (select avg(stock) from books);
+            
+select * from rental_stock_view;
