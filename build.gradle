@@ -33,6 +33,7 @@ dependencies {
     implementation("org.seleniumhq.selenium:selenium-java:4.35.0")
     // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
     implementation("io.github.bonigarcia:webdrivermanager:6.3.1")
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     compileOnly 'org.projectlombok:lombok'
