@@ -1,6 +1,7 @@
 package example.d18.controller;
 
 import example.d18.model.dto.UserDto;
+import example.d18.service.JwtService;
 import example.d18.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final JwtService jwtService;
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody UserDto userDto) {
@@ -39,7 +41,10 @@ public class UserController {
         UserDto result = userService.login(userDto);
         if (result != null) {
             // 로그인 성공 시 해당 유저의 아이디를 쿠키 ('클라이언트' 브라우저의 임시 저장소) 에 저장
-            Cookie cookie = new Cookie("loginUser", result.getUid());
+            // Cookie cookie = new Cookie("loginUser", result.getUid());
+
+            // 쿠키에 저장하는 회원정보를 토큰으로 저장
+            Cookie cookie = new Cookie("loginUser" , jwtService.createToken(result.getUid(), result.getUrole()));
 
             // 쿠키 노출(탈취) 방지 :  민감한 정보에서 사용
             // .setHttpOnly(true) : 무조건 http 에서만 사용 -> js 로 접근 불가
@@ -66,14 +71,23 @@ public class UserController {
             for (Cookie c : cookies) {
                 if (c.getName().equals("loginUser")) {
                     // "loginUser" 와 일치할 시, 저장된 값 반환
-                    String uid = c.getValue();
-                    UserDto result = userService.myInfo(uid);
-                    // 로그인 상태
-                    return ResponseEntity.ok(result);
+                    //String uid = c.getValue();
+
+                    // 쿠키에 저장된 토큰 반환
+                    String token = c.getValue();
+                    boolean checked = jwtService.checkToken(token);
+                    if (checked) {
+                        // 토큰이 유효하면 저장된 클레임 추출
+                        String uid = jwtService.getUid(token);
+                        UserDto result = userService.myInfo(uid);
+
+                        // 로그인 상태로 회원정보 조회
+                        return ResponseEntity.ok(result);
+                    }
                 }
             }
         }
-        // 비로그인 상태
+        // 비로그인 상태 (토큰 검증 실패, 토큰이 유효하지 않음)
         return ResponseEntity.ok(null);
     }
 
