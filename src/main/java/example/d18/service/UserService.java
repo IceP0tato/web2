@@ -47,4 +47,20 @@ public class UserService {
         UserDto result = userMapper.myInfo(uid);
         return result;
     }
+
+    // oAuth2 회원가입
+    public UserDto oauth2UserSignup(String uid, String name) {
+        UserDto userDto = userMapper.login(uid);
+        if (userDto == null) {
+            // 기존 회원 정보가 없을 경우
+            UserDto oauth2User = new UserDto();
+            oauth2User.setUid(uid);
+            oauth2User.setUpwd(null); // 타사 정보이므로 없음 (자사는 BCrypt 로 관리. 패스워드가 없는 회원은 OAuth2 로그인)
+            oauth2User.setUname(name);
+            oauth2User.setUrole("USER"); // 추후에 일반 유저, OAuth 유저 권한 구분 가능
+            userMapper.signup(oauth2User);
+            return oauth2User;
+        }
+        return null;
+    }
 }
