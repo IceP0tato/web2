@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
@@ -104,5 +107,20 @@ public class UserController {
         response.addCookie(cookie);
 
         return ResponseEntity.ok(true);
+    }
+
+    // 권한 반환
+    @GetMapping("/check")
+    public ResponseEntity<?> checkToken(@CookieValue(value = "loginUser", required = false) String token) {
+        Map<String, Object> map = new HashMap<>();
+        if (token != null && jwtService.checkToken(token)) {
+            String urole = jwtService.getUrole(token);
+            map.put("isAuth", true);
+            map.put("urole", urole);
+            return ResponseEntity.status(200).body(map);
+        } else {
+            map.put("isAuth", false);
+            return ResponseEntity.status(403).body(map);
+        }
     }
 }

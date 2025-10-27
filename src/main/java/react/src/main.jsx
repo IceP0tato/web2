@@ -55,8 +55,8 @@ create.render(
   </Provider>);
 */
 
-import Component15 from './example/d08/Component15';
-create.render(<Component15 />);
+import App from './web2/App.jsx';
+create.render(<App />);
 
 
 

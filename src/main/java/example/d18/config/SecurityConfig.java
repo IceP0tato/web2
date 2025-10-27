@@ -3,6 +3,7 @@ package example.d18.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -50,6 +51,9 @@ public class SecurityConfig {
                 .loginPage("/oauth2/authorization/google") // 현재 서버의 로그인 페이지가 아닌 타사 로그인 페이지 사용
                 .successHandler(oauth2SuccessHandler) // 타사 로그인 페이지에서 로그인 성공 시 반환되는 클래스 정의
         );
+
+        // 시큐리티의 CORS 정책 기본값(CorsConfig) 설정
+        http.cors(Customizer.withDefaults());
 
         return http.build(); // 커스텀 완료된 객체 반환
     }
