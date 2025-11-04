@@ -1,0 +1,41 @@
+package example2.d02;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/goods")
+@RequiredArgsConstructor
+public class GoodsController {
+    private final GoodsService goodsService;
+    // 저장
+    @PostMapping
+    public ResponseEntity<?> goodsSave(@RequestBody GoodsDto goodsDto) {
+        return ResponseEntity.ok(goodsService.goodsSave(goodsDto));
+    }
+
+    // 전체 조회
+    @GetMapping("/list")
+    public ResponseEntity<?> goodsAll() {
+        return ResponseEntity.ok(goodsService.goodsAll());
+    }
+
+    // 개별 조회
+    @GetMapping
+    public ResponseEntity<?> goodsGet(@RequestParam int gno) {
+        return ResponseEntity.ok(goodsService.goodsGet(gno));
+    }
+
+    // 개별 삭제
+    @DeleteMapping
+    public ResponseEntity<?> goodsDelete(@RequestParam int gno) {
+        return ResponseEntity.ok(goodsService.goodsDelete(gno));
+    }
+
+    // 개별 수정
+    @PutMapping
+    public ResponseEntity<?> goodsUpdate(@RequestBody GoodsDto goodsDto) {
+        return ResponseEntity.ok(goodsService.goodsUpdate(goodsDto));
+    }
+}
