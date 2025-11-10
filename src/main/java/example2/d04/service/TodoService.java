@@ -81,7 +81,6 @@ public class TodoService {
             // 검색이 있을 경우 검색 조회
             result = todoRepository.findByTitleContaining(keyword, pageable);
         }
-        System.out.println("result = " + result);
 
         return result.map(TodoEntity::toDto);
     }
