@@ -1,18 +1,37 @@
 package example2.d04.controller;
 
+import example2.d04.model.dto.TodoDto;
 import example2.d04.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/todo")
 @RequiredArgsConstructor
+@CrossOrigin(value = "*")
 public class TodoController {
     private final TodoService todoService;
+
+    @GetMapping
+    public ResponseEntity<?> findAll() {
+        return ResponseEntity.ok(todoService.findAll());
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> delete(@RequestParam int id) {
+        return ResponseEntity.ok(todoService.delete(id));
+    }
+
+    @GetMapping("/detail")
+    public ResponseEntity<?> findById(@RequestParam int id) {
+        return ResponseEntity.ok(todoService.findById(id));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> update(@RequestBody TodoDto todoDto) {
+        return ResponseEntity.ok(todoService.update(todoDto));
+    }
 
     @GetMapping("/query1")
     public ResponseEntity<?> query1(@RequestParam String title) {

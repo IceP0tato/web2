@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +20,43 @@ import java.util.stream.Collectors;
 @Transactional
 public class TodoService {
     private final TodoRepository todoRepository;
+
+    public List<TodoDto> findAll() {
+        return todoRepository.findAll().stream()
+                .map(TodoEntity::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public boolean delete(int id) {
+        if (todoRepository.existsById(id)) {
+            todoRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public TodoDto findById(int id) {
+        Optional<TodoEntity> optional = todoRepository.findById(id);
+        if (optional.isPresent()) {
+            TodoEntity todoEntity = optional.get();
+            return todoEntity.toDto();
+        } else {
+            return null;
+        }
+    }
+
+    public TodoDto update(TodoDto todoDto) {
+        Optional<TodoEntity> optional = todoRepository.findById(todoDto.getId());
+        if (optional.isPresent()) {
+            TodoEntity todoEntity = optional.get();
+            todoEntity.setTitle(todoDto.getTitle());
+            todoEntity.setContent(todoDto.getContent());
+            todoEntity.setDone(todoDto.isDone());
+            return todoEntity.toDto();
+        } else {
+            return null;
+        }
+    }
 
     public List<TodoDto> query1(String title) {
         // 쿼리 메소드
